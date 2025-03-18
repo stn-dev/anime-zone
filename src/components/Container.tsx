@@ -8,7 +8,7 @@ function Container(props: ContainerProps) {
   const { children, className = '', tag = 'div' } = props
   const Tag = tag
   return (
-    <Tag className={`w-full max-w-[1440px] px-5 border border-black mx-auto lg:px-6 xl:px-8 ${className}`} >
+    <Tag className={`w-full max-w-[1440px] px-5 mx-auto lg:px-6 xl:px-8 ${className}`} >
       {children}
     </Tag>
   )
