@@ -4,9 +4,17 @@ export interface HeaderLinkType {
 }
 
 export interface CardProps {
-  id: string;
+  id: number;
   title: string;
   rating: number | string;
   date: number;
   imageSrc: string;
+}
+
+export interface AnimeApiType {
+  id: number;
+  tilte: string;
+  scrore: number;
+  ImageSrc: string;
+  years: number;
 }
