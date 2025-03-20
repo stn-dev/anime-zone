@@ -10,7 +10,7 @@ function Button(props: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`h-fit w-fit px-[16px] 2xl:px-[32px] py-2 2xl:py-[16px] text-sm 2xl:text-xl font-semibold rounded-tr-xl 2xl:rounded-tr-3xl rounded-bl-xl 2xl:rounded-bl-3xl ${variant === 'stroked' ? 'bg-transparent text-contrasted border border-contrasted' : 'bg-contrasted text-dark'} ${className}`}
+      className={`h-fit w-fit px-[16px] hover:translate-y-[-10px] transition-all duration-500  md:px-[25px] 2xl:px-[32px] py-2 md:py-[12px] xl:py-[16px] text-sm md:text-xl- xl:text-xl font-semibold rounded-tr-xl xl:rounded-tr-3xl rounded-bl-xl xl:rounded-bl-3xl ${variant === 'stroked' ? 'bg-transparent text-contrasted border border-contrasted' : 'bg-contrasted text-dark'} ${className}`}
     >
       {label}
     </button>
