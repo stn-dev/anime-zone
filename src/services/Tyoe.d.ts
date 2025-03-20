@@ -10,4 +10,5 @@ export interface CardProps {
   date: number;
   imageSrc: string;
   synopsis?: string;
+  genres: { name: string }[];
 }

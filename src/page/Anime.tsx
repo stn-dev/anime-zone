@@ -10,13 +10,14 @@ function Anime() {
   useEffect(() => {
     const gatAnime = async () => {
       const anime = await animeClient.top.getTopAnime()
-      console.log(anime.data)
+      // const char = await animeClient.characters.getCharacterFullById(5)
+      // console.log(char.data)
       setTopAnime(anime.data)
     }
     gatAnime()
   }, [])
   return (
-    <Container tag='section' className='min-h-screen grid grid-cols-1 gap-5 items-center justify-center pt-[100px] sm:grid-cols-2 xl:grid-cols-3'>
+    <Container tag='section' className='min-h-screen grid grid-cols-1 gap-5 items-center justify-center pt-[100px] md:grid-cols-2 xl:grid-cols-3'>
       {
         topAnime?.map((anime) => {
           return (
@@ -27,7 +28,7 @@ function Anime() {
               date={anime.year}
               imageSrc={anime.images.jpg.image_url}
               rating={anime.score}
-              synopsis={anime.synopsis!}
+              genres={anime.genres}
             />
           )
         })
