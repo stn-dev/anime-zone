@@ -10,6 +10,7 @@ function Anime() {
   useEffect(() => {
     const gatAnime = async () => {
       const anime = await animeClient.top.getTopAnime()
+      console.log(anime.data)
       setTopAnime(anime.data)
     }
     gatAnime()
@@ -20,11 +21,13 @@ function Anime() {
         topAnime?.map((anime) => {
           return (
             <CardAnime
+              key={anime.mal_id}
               id={anime.mal_id}
               title={anime.title}
               date={anime.year}
               imageSrc={anime.images.jpg.image_url}
               rating={anime.score}
+              synopsis={anime.synopsis!}
             />
           )
         })

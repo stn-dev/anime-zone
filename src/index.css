@@ -1,9 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
-/* :root {
-  --primary : --var()
-} */
+@theme {
+  --breakpoint-2xl: 1440px;
+  --font-jaro: "Jaro", sans-serif;
+  --color-dark: #0a111f;
+  --color-contrasted: #fca311;
+  --color-neutre: #e5e5e5;
+  --color-blue: #14213d;
+}
+
+body {
+  @apply text-neutre;
+}
 
 .active {
-  @apply text-blue-500;
+  @apply text-contrasted;
 }

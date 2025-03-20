@@ -9,12 +9,5 @@ export interface CardProps {
   rating: number | string;
   date: number;
   imageSrc: string;
-}
-
-export interface AnimeApiType {
-  id: number;
-  tilte: string;
-  scrore: number;
-  ImageSrc: string;
-  years: number;
+  synopsis?: string;
 }
