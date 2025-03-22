@@ -9,12 +9,19 @@ function Anime() {
   const [topAnime, setTopAnime] = useState<Anime[]>()
   const animeClient = new JikanClient()
   const [currentage, setCurrentPage] = useState(1)
+  const [select, setselect] = useState("all")
   const data = [...pokemonData, ...dbZnData, ...narutoData, ...onepieceData]
-  const itemPerPage = 5
-  const dataLength = data.length
+  const itemPerPage = 6
   const lastItem = currentage * itemPerPage
   const firstItem = lastItem - itemPerPage
-  const dataFiltered = data.slice(firstItem, lastItem)
+  const dataFiltered = data.filter((anime) => {
+    if (select !== "all") {
+      return anime.toLocaleLowerCase().includes(select.toLowerCase() as string)
+    } else {
+      return anime
+    }
+  })
+  const pagination = dataFiltered.slice(firstItem, lastItem)
 
 
   useEffect(() => {
@@ -26,7 +33,7 @@ function Anime() {
     gatAnime()
   }, [])
   return (
-    <Container tag='section' className='min-h-screen pb-[50px] flex flex-col items-center justify-center gap-10'>
+    <Container tag='section' className='min-h-screen pt-[100px] pb-[50px] flex flex-col items-center justify-center gap-10'>
       {/* {
         topAnime?.map((anime) => {
           return (
@@ -41,9 +48,21 @@ function Anime() {
           )
         })
       } */}
-      <div className='grid grid-cols-1 gap-5 items-center justify-center pt-[100px] md:grid-cols-2 xl:grid-cols-3 min-h-[90vh]' >
+      <select
+        name="filter"
+        id=""
+        className='w-[300px] outline-none text-dark bg-contrasted p-3 rounded-lg text-lg'
+        onChange={(e) => setselect(e.target.value)}
+      >
+        <option value="all"> all </option>
+        <option value="pokemon"> pokemon </option>
+        <option value="dragon ball">Dragon ball </option>
+        <option value="one piece"> one piece </option>
+        <option value="naruto"> Naruto </option>
+      </select>
+      <div className='grid grid-cols-1 gap-5 items-center justify-center  md:grid-cols-2 xl:grid-cols-3 min-h-[90vh]' >
         {
-          dataFiltered.map((anime, id) => {
+          pagination.map((anime, id) => {
             return (
               <CardAnime
                 key={id}
@@ -59,12 +78,12 @@ function Anime() {
       </div>
       <div className='flex flex-wrap items-center justify-center gap-3 md:gap-5' >
         {
-          Array.from({ length: Math.ceil(dataLength / itemPerPage) }, (_, id) => {
+          Array.from({ length: Math.ceil(dataFiltered.length / itemPerPage) }, (_, id) => {
             return (
               <button
                 key={id}
                 onClick={() => setCurrentPage(id + 1)}
-                className={`w-fit h-fit px-4 py-2 md:px-5 md:py-3 border border-contrasted rounded-lg font-semibold text-xl ${id + 1 === currentage ? 'text-dark bg-contrasted' : 'text-contrasted bg-transparent '}`}
+                className={`w-fit h-fit px-4 py-2 md:px-5 md:py-3 border border-contrasted rounded-lg font-semibold text-xl hover:cursor-pointer ${id + 1 === currentage ? 'text-dark bg-contrasted' : 'text-contrasted bg-transparent '}`}
               >
                 {id + 1}
               </button>
