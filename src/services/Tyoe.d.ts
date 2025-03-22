@@ -6,9 +6,11 @@ export interface HeaderLinkType {
 export interface CardProps {
   id: number;
   title: string;
-  rating: number | string;
-  date: number;
+  episode: number;
   imageSrc: string;
-  synopsis?: string;
   genres: { name: string }[];
+}
+
+export interface SingleAnimePageInfos {
+  label: string;
 }
