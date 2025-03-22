@@ -8,11 +8,11 @@ import { dbZnData, narutoData, onepieceData, pokemonData } from '../services/dat
 function Anime() {
   const [topAnime, setTopAnime] = useState<Anime[]>()
   const animeClient = new JikanClient()
-  const [currentage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
   const [select, setselect] = useState("all")
   const data = [...pokemonData, ...dbZnData, ...narutoData, ...onepieceData]
   const itemPerPage = 6
-  const lastItem = currentage * itemPerPage
+  const lastItem = currentPage * itemPerPage
   const firstItem = lastItem - itemPerPage
   const dataFiltered = data.filter((anime) => {
     if (select !== "all") {
@@ -22,7 +22,10 @@ function Anime() {
     }
   })
   const pagination = dataFiltered.slice(firstItem, lastItem)
-
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setselect(e.target.value)
+    setCurrentPage(1)
+  }
 
   useEffect(() => {
     const gatAnime = async () => {
@@ -52,7 +55,7 @@ function Anime() {
         name="filter"
         id=""
         className='w-[300px] outline-none text-dark bg-contrasted p-3 rounded-lg text-lg'
-        onChange={(e) => setselect(e.target.value)}
+        onChange={handleChange}
       >
         <option value="all"> all </option>
         <option value="pokemon"> pokemon </option>
@@ -83,7 +86,7 @@ function Anime() {
               <button
                 key={id}
                 onClick={() => setCurrentPage(id + 1)}
-                className={`w-fit h-fit px-4 py-2 md:px-5 md:py-3 border border-contrasted rounded-lg font-semibold text-xl hover:cursor-pointer ${id + 1 === currentage ? 'text-dark bg-contrasted' : 'text-contrasted bg-transparent '}`}
+                className={`w-fit h-fit px-4 py-2 md:px-5 md:py-3 border border-contrasted rounded-lg font-semibold text-xl hover:cursor-pointer ${id + 1 === currentPage ? 'text-dark bg-contrasted' : 'text-contrasted bg-transparent '}`}
               >
                 {id + 1}
               </button>

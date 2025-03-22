@@ -21,7 +21,7 @@ function Header() {
           {
             headerLinkData.map((link, id) => (
               <li key={id} onClick={() => setShowMenu(false)} >
-                <NavLink to={link.href} > {link.label} </NavLink>
+                <NavLink to={link.href} className='hover:text-contrasted duration-200' > {link.label} </NavLink>
               </li>
             ))
           }
