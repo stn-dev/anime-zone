@@ -2,9 +2,10 @@ import { createBrowserRouter } from "react-router";
 import App from "./App";
 import About from "./page/About";
 import Home from "./page/Home";
-import Contact from "./page/Contact";
 import Anime from "./page/Anime";
 import SingleAnime from "./page/SingleAnime";
+import Characters from "./page/Characters";
+import SingleCharacter from "./page/SingleCharacter";
 
 export const router = createBrowserRouter([
   {
@@ -28,8 +29,12 @@ export const router = createBrowserRouter([
         element: <SingleAnime />
       },
       {
-        path: '/contact',
-        element: <Contact />
+        path: '/characters',
+        element: <Characters />
+      },
+      {
+        path: '/characters/:id',
+        element: <SingleCharacter />
       },
     ]
   },

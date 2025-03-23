@@ -1,11 +1,11 @@
 import { Link } from "react-router"
-import { CardProps } from "../services/Tyoe"
+import { CardProps } from "../services/Type"
 
-function CardAnime(props: CardProps) {
-  const { id, title, episode, imageSrc, genres = [] } = props
+function Card(props: CardProps) {
+  const { id, title, episode, imageSrc, genres = [], link } = props
   const limitedGenres = genres.slice(0, 3)
   return (
-    <Link to={`/anime/${id}`} className="group w-full shadow-neutral-50 relative delay-0 duration-0 overflow-hidden border border-neutre rounded-tl-3xl rounded-br-3xl max-h-[620px]">
+    <Link to={`/${link}/${id}`} className="group w-full shadow-neutral-50 relative delay-0 duration-0 overflow-hidden border border-neutre rounded-tl-3xl rounded-br-3xl max-h-[620px]">
       <img
         className="w-full h-auto group-hover:scale-110 duration-500"
         src={imageSrc}
@@ -33,4 +33,4 @@ function CardAnime(props: CardProps) {
   )
 }
 
-export default CardAnime
+export default Card

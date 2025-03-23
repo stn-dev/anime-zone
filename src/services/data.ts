@@ -1,4 +1,4 @@
-import { HeaderLinkType } from "./Tyoe";
+import { HeaderLinkType, SelectProps } from "./Type";
 
 export const headerLinkData: HeaderLinkType[] = [
   {
@@ -6,16 +6,39 @@ export const headerLinkData: HeaderLinkType[] = [
     href: "/",
   },
   {
-    label: "About",
-    href: "/about",
-  },
-  {
     label: "Anime",
     href: "/anime",
   },
   {
-    label: "Contact",
-    href: "/contact",
+    label: "Characters",
+    href: "/characters",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+];
+
+export const selectFilterData: SelectProps["options"] = [
+  {
+    label: "All",
+    value: "all",
+  },
+  {
+    label: "Pokemon",
+    value: "pokemon",
+  },
+  {
+    label: "Dragon Ball",
+    value: "dragon ball",
+  },
+  {
+    label: "One piece",
+    value: "one piece",
+  },
+  {
+    label: "Naruto",
+    value: "naruto",
   },
 ];
 

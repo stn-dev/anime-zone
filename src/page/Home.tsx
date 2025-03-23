@@ -34,10 +34,10 @@ function Home() {
       />
 
       {/* heightligth anime*/}
-      <HeightLight title={'Top animé'} data={3} />
+      <HeightLight title={'Top animé'} data={3} link='anime' />
 
       {/* heightligth charcters*/}
-      <HeightLight title={'Top charcters'} data={3} />
+      <HeightLight title={'Top characters'} data={3} link='characters' />
     </Container>
   )
 }

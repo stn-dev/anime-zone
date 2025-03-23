@@ -8,6 +8,7 @@
   --color-contrasted: #fca311;
   --color-neutre: #e5e5e5;
   --color-blue: #14213d;
+  --animate-skelton: skelton 2s linear infinite;
 }
 
 body {
@@ -16,4 +17,13 @@ body {
 
 .active {
   @apply text-contrasted;
+}
+
+@keyframes skelton {
+  0% {
+    left: -200%;
+  }
+  100% {
+    left: 200%;
+  }
 }

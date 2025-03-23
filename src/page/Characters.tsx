@@ -4,17 +4,18 @@ import type { Anime } from '@tutkli/jikan-ts'
 import { useEffect, useState } from 'react'
 import { dbZnData, narutoData, onepieceData, pokemonData, selectFilterData } from '../services/data'
 import Select from '../components/Select'
+import { usePagination } from '../hooks/usePagination'
 import Card from '../components/Card'
 
-function Anime() {
+function Characters() {
   const [topAnime, setTopAnime] = useState<Anime[]>()
   const animeClient = new JikanClient()
   const [currentPage, setCurrentPage] = useState(1)
   const [select, setselect] = useState("all")
   const data = [...pokemonData, ...dbZnData, ...narutoData, ...onepieceData]
-  const itemPerPage = 6
-  const lastItem = currentPage * itemPerPage
-  const firstItem = lastItem - itemPerPage
+  // const itemPerPage = 6
+  // const lastItem = currentPage * itemPerPage
+  // const firstItem = lastItem - itemPerPage
   const dataFiltered = data.filter((anime) => {
     if (select !== "all") {
       return anime.toLocaleLowerCase().includes(select.toLowerCase() as string)
@@ -22,7 +23,9 @@ function Anime() {
       return anime
     }
   })
-  const pagination = dataFiltered.slice(firstItem, lastItem)
+  // const pagination = dataFiltered.slice(firstItem, lastItem)
+  const { paginationLength, shownItems } = usePagination(currentPage, 9, dataFiltered)
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setselect(e.target.value)
     setCurrentPage(1)
@@ -61,13 +64,13 @@ function Anime() {
       </div>
       <div className='grid grid-cols-1 gap-5 items-center justify-center  md:grid-cols-2 xl:grid-cols-3 min-h-[90vh]' >
         {
-          pagination.map((anime, id) => {
+          shownItems.map((anime, id) => {
             return (
               <Card
                 key={id}
                 id={id}
-                link='anime'
                 title={anime}
+                link='characters'
                 episode={20}
                 imageSrc={"/src/assets/home-image.png"}
                 genres={[{ name: "comedie" }]}
@@ -78,7 +81,7 @@ function Anime() {
       </div>
       <div className='flex flex-wrap items-center justify-center gap-3 md:gap-5' >
         {
-          Array.from({ length: Math.ceil(dataFiltered.length / itemPerPage) }, (_, id) => {
+          Array.from({ length: paginationLength }, (_, id) => {
             return (
               <button
                 key={id}
@@ -95,4 +98,4 @@ function Anime() {
   )
 }
 
-export default Anime
+export default Characters
