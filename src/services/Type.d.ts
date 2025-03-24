@@ -6,10 +6,17 @@ export interface HeaderLinkType {
 export interface CardProps {
   id: number;
   title: string;
-  link: "anime" | "characters";
-  episode: number;
+  episode?: number;
   imageSrc: string;
-  genres: { name: string }[];
+  genres?: { name: string }[];
+  isFullData: boolean;
+}
+
+export interface CardCharactersProps {
+  id: string;
+  name: string;
+  japan_name: string;
+  imageSrc: string;
 }
 
 export interface InputPros {
@@ -33,4 +40,10 @@ export interface SelectProps {
 
 export interface SingleAnimePageInfos {
   label: string;
+}
+
+export interface VideoProps {
+  src: string;
+  className?: string;
+  title?: string;
 }

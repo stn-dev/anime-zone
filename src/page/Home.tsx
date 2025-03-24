@@ -14,11 +14,6 @@ function Home() {
         <span className=' stroke-contrasted' style={{ WebkitTextStroke: '1.5px #fca311' }}> the world </span>
         <span className=' stroke-contrasted' style={{ WebkitTextStroke: '1.5px #fca311' }}>  of anime </span>
       </h1>
-      {/* <div className='flex items-center justify-center gap-5 xl:gap-[48px] relative z-[5]' >
-        <Button label='Characters' />
-        <Button label='Animé' variant='stroked' />
-      </div> */}
-      {/*search */}
       <div className=' w-[250px] md:w-[400px] ' >
         <Input
           placeholder='Search anime or character...'
@@ -34,10 +29,10 @@ function Home() {
       />
 
       {/* heightligth anime*/}
-      <HeightLight title={'Top animé'} data={3} link='anime' />
+      <HeightLight title={'Top animé'} Categories='anime' />
 
       {/* heightligth charcters*/}
-      <HeightLight title={'Top characters'} data={3} link='characters' />
+      <HeightLight title={'Top characters'} Categories='characters' />
     </Container>
   )
 }
