@@ -1,21 +1,24 @@
-import { JikanClient } from '@tutkli/jikan-ts'
+// import { JikanClient } from '@tutkli/jikan-ts'
 import Container from '../components/Container'
-import type { Anime, Character } from '@tutkli/jikan-ts'
+import type { Character, CharacterFull, JikanResponse } from '@tutkli/jikan-ts'
 import { useEffect, useState } from 'react'
-import { dbZnData, narutoData, onepieceData, pokemonData, selectFilterData } from '../services/data'
-import Select from '../components/Select'
-import { usePagination } from '../hooks/usePagination'
-import Card from '../components/CardAnime'
-import { useFetch } from '../hooks/useFetch'
+// import { dbZnData, narutoData, onepieceData, pokemonData, selectFilterData } from '../services/data'
+// import Select from '../components/Select'
+// import { usePagination } from '../hooks/usePagination'
+// import Card from '../components/CardAnime'
+// import { useFetch } from '../hooks/useFetch'
 import CardCharacters from '../components/CardCharacters'
 import SkeletonGroup from '../components/SkeletonGroup'
+import Button from '../components/Button'
 
 function Characters() {
   const [characters, setCharacters] = useState<Character[]>()
   const [isLoading, setIsLoading] = useState(false)
-  const animeClient = new JikanClient()
+  const [pageLimit, setPageLimmit] = useState(1)
+  // const animeClient = new JikanClient()
   const [currentPage, setCurrentPage] = useState(1)
-  const [select, setselect] = useState("all")
+  const URL = import.meta.env.VITE_BASE_URL
+  // const [select, setselect] = useState("all")
   // const myData = [...pokemonData, ...dbZnData, ...narutoData, ...onepieceData]
   // const itemPerPage = 6
   // const lastItem = currentPage * itemPerPage
@@ -31,10 +34,10 @@ function Characters() {
   // const { paginationLength, shownItems } = usePagination(currentPage, 9, dataFiltered)
 
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setselect(e.target.value)
-    setCurrentPage(1)
-  }
+  // const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setselect(e.target.value)
+  //   setCurrentPage(1)
+  // }
 
   useEffect(() => {
     const gatCharacters = async () => {
@@ -43,10 +46,11 @@ function Characters() {
       // setTopAnime(anime.data)
       // console.log(anime.data)
       try {
-        const request = await fetch('https://api.jikan.moe/v4/top/characters')
-        const response = await request.json()
+        const request = await fetch(`${URL}top/characters?page=${currentPage}`)
+        const response: JikanResponse<CharacterFull[]> = await request.json()
         console.log(response.data)
         setCharacters(response.data)
+        setPageLimmit(Number(response.pagination?.last_visible_page))
         setIsLoading(false)
       } catch (error) {
         console.log(`error occuring: ${error}`)
@@ -55,7 +59,7 @@ function Characters() {
     }
     gatCharacters()
     // console.log(data)
-  }, [])
+  }, [currentPage])
   return (
     <Container tag='section' className='min-h-screen pt-[100px] pb-[50px] flex flex-col items-center justify-center gap-10'>
       {/* <div className='w-full grid grid-cols-5 grid-rows-1 gap-5'>
@@ -84,22 +88,20 @@ function Characters() {
           </div>
         )
       }
-
-      {/* <div className='flex flex-wrap items-center justify-center gap-3 md:gap-5' >
-        {
-          Array.from({ length: paginationLength }, (_, id) => {
-            return (
-              <button
-                key={id}
-                onClick={() => setCurrentPage(id + 1)}
-                className={`w-fit h-fit px-4 py-2 md:px-5 md:py-3 border border-contrasted rounded-lg font-semibold text-xl hover:cursor-pointer ${id + 1 === currentPage ? 'text-dark bg-contrasted' : 'text-contrasted bg-transparent '}`}
-              >
-                {id + 1}
-              </button>
-            )
-          })
-        }
-      </div> */}
+      <div className='flex flex-wrap items-center justify-center gap-5 md:gap-10' >
+        <Button
+          label='Prev'
+          variant='orange'
+          onClick={() => currentPage >= 1 ? setCurrentPage((prev) => prev - 1) : setCurrentPage(1)}
+          disable={currentPage === 1 || isLoading}
+        />
+        <Button
+          label='Next'
+          variant='orange'
+          onClick={() => currentPage < pageLimit ? setCurrentPage((prev) => prev + 1) : setCurrentPage(pageLimit)}
+          disable={currentPage === pageLimit || isLoading}
+        />
+      </div>
     </Container>
   )
 }

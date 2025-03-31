@@ -12,7 +12,7 @@ function CardAnime(props: CardProps) {
         alt="anime card image"
       />
       <div className="w-full h-fit flex flex-col items-start justify-center gap-5 p-5 text-xl absolute bottom-0 left-0 bg-dark " >
-        <h2 className=" font-semibold text-neutre" > {title} </h2>
+        <h2 className=" font-semibold text-neutre line-clamp-2" > {title} </h2>
         {
           isFullData && (
             <div className=" w-full flex items-center justify-items-start text-sm md:text-base xl:text-lg gap-5" >

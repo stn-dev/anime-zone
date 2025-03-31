@@ -1,59 +1,33 @@
-import { JikanClient } from '@tutkli/jikan-ts'
 import Container from '../components/Container'
-import type { Anime } from '@tutkli/jikan-ts'
+import type { Anime, JikanResponse } from '@tutkli/jikan-ts'
 import { useEffect, useState } from 'react'
-import { dbZnData, narutoData, onepieceData, pokemonData, selectFilterData } from '../services/data'
-import Select from '../components/Select'
-import Card from '../components/CardAnime'
 import CardAnime from '../components/CardAnime'
 import SkeletonGroup from '../components/SkeletonGroup'
+import Button from '../components/Button'
 
 function Anime() {
   const [topAnime, setTopAnime] = useState<Anime[]>()
   const [loading, setIloading] = useState<boolean>(false)
-  const animeClient = new JikanClient()
+  const [pageLimit, setPageLimmit] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
-  const [select, setselect] = useState("all")
-  const data = [...pokemonData, ...dbZnData, ...narutoData, ...onepieceData]
-  const itemPerPage = 6
-  const lastItem = currentPage * itemPerPage
-  const firstItem = lastItem - itemPerPage
-  const dataFiltered = data.filter((anime) => {
-    if (select !== "all") {
-      return anime.toLocaleLowerCase().includes(select.toLowerCase() as string)
-    } else {
-      return anime
-    }
-  })
-  const URL = import.meta.env.BASE_URL
-  const pagination = dataFiltered.slice(firstItem, lastItem)
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setselect(e.target.value)
-    setCurrentPage(1)
-  }
 
   useEffect(() => {
-    const gatAnime = async () => {
-      const anime = await animeClient.top.getTopAnime()
-      setTopAnime(anime.data)
-      console.log(anime.data)
-    }
     const fetchAnime = async () => {
       try {
         setIloading(true)
-        console.log(URL)
-        const request = await fetch(`https://api.jikan.moe/v4/anime`)
-        const res = await request.json()
+        const request = await fetch(`https://api.jikan.moe/v4/top/anime?page=${currentPage}`)
+        const res: JikanResponse<Anime[]> = await request.json()
         setTopAnime(res.data)
+        setPageLimmit(Number(res.pagination?.last_visible_page))
         setIloading(false)
+        console.log(res)
       } catch (error) {
         console.log(`error occuring: ${error}`)
         setIloading(false)
       }
     }
     fetchAnime()
-    // gatAnime()
-  }, [])
+  }, [currentPage])
   return (
     <Container tag='section' className='min-h-screen pt-[100px] pb-[50px] flex flex-col items-center justify-center gap-10'>
       {
@@ -79,45 +53,20 @@ function Anime() {
           </div>
         )
       }
-      {/* <div className='w-full grid grid-cols-5 grid-rows-1 gap-5'>
-        <Select
-          name='filter'
-          onChange={handleChange}
-          options={selectFilterData}
+      <div className='flex flex-wrap items-center justify-center gap-5 md:gap-10' >
+        <Button
+          label='Prev'
+          variant='orange'
+          onClick={() => currentPage >= 1 ? setCurrentPage((prev) => prev - 1) : setCurrentPage(1)}
+          disable={currentPage === 1 || loading}
+        />
+        <Button
+          label='Next'
+          variant='orange'
+          onClick={() => currentPage <= pageLimit ? setCurrentPage((prev) => ++prev) : setCurrentPage(pageLimit)}
+          disable={currentPage === pageLimit || loading}
         />
       </div>
-      <div className='grid grid-cols-1 gap-5 items-center justify-center  md:grid-cols-2 xl:grid-cols-3 min-h-[90vh]' >
-        {
-          pagination.map((anime, id) => {
-            return (
-              <Card
-                key={id}
-                id={id}
-                link='anime'
-                title={anime}
-                episode={20}
-                imageSrc={"/src/assets/home-image.png"}
-                genres={[{ name: "comedie" }]}
-              />
-            )
-          })
-        }
-      </div>
-      <div className='flex flex-wrap items-center justify-center gap-3 md:gap-5' >
-        {
-          Array.from({ length: Math.ceil(dataFiltered.length / itemPerPage) }, (_, id) => {
-            return (
-              <button
-                key={id}
-                onClick={() => setCurrentPage(id + 1)}
-                className={`w-fit h-fit px-4 py-2 md:px-5 md:py-3 border border-contrasted rounded-lg font-semibold text-xl hover:cursor-pointer ${id + 1 === currentPage ? 'text-dark bg-contrasted' : 'text-contrasted bg-transparent '}`}
-              >
-                {id + 1}
-              </button>
-            )
-          })
-        } */}
-      {/* </div> */}
     </Container >
   )
 }

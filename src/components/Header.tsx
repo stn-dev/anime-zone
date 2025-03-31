@@ -17,11 +17,11 @@ function Header() {
         >
           {showMenu ? "CLOSE" : "MENU"}
         </p>
-        <ul className={`flex flex-col justify-center transition-transform bg-dark lg:bg-transparent  duration-500 items-center gap-5 fixed top-[0] left-0 w-full h-screen text-6xl md:text-8xl lg:font-sans font-jaro lg:relative lg:flex-row lg:text-base lg:gap-5 lg:h-fit lg:w-fit  ${!showMenu && 'translate-x-[100%]'} lg:translate-x-0`} >
+        <ul className={`flex flex-col justify-center bg-dark lg:bg-transparent  duration-500 items-center gap-5 absolute top-0 left-0 w-full h-screen text-6xl md:text-8xl lg:font-sans font-jaro lg:static lg:flex-row lg:text-base lg:gap-5 lg:h-fit lg:w-fit  ${!showMenu && 'left-[100%]'}`} >
           {
             headerLinkData.map((link, id) => (
-              <li key={id} onClick={() => setShowMenu(false)} >
-                <NavLink to={link.href} className='hover:text-contrasted duration-200' > {link.label} </NavLink>
+              <li className='transition-none' key={id} onClick={() => setShowMenu(false)} >
+                <NavLink to={link.href} className='hover:text-contrasted  transition-colors'> {link.label} </NavLink>
               </li>
             ))
           }

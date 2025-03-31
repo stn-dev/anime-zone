@@ -1,4 +1,5 @@
 import Container from '../components/Container'
+import GlobalSearch from '../components/GlobalSearch'
 import HeightLight from '../components/HeightLight'
 import Input from '../components/Input'
 
@@ -14,12 +15,13 @@ function Home() {
         <span className=' stroke-contrasted' style={{ WebkitTextStroke: '1.5px #fca311' }}> the world </span>
         <span className=' stroke-contrasted' style={{ WebkitTextStroke: '1.5px #fca311' }}>  of anime </span>
       </h1>
-      <div className=' w-[250px] md:w-[400px] ' >
+      {/* <div className=' w-[250px] md:w-[400px] ' >
         <Input
           placeholder='Search anime or character...'
           className='relative z-[5]'
         />
-      </div>
+      </div> */}
+      <GlobalSearch />
 
       {/* background image */}
       <img
@@ -29,10 +31,10 @@ function Home() {
       />
 
       {/* heightligth anime*/}
-      <HeightLight title={'Top animé'} Categories='anime' />
+      <HeightLight title={'Top animé'} Categories='anime' limite='3' />
 
       {/* heightligth charcters*/}
-      <HeightLight title={'Top characters'} Categories='characters' />
+      <HeightLight title={'Top characters'} Categories='characters' limite='3' />
     </Container>
   )
 }

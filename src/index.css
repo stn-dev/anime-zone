@@ -27,3 +27,7 @@ body {
     left: 200%;
   }
 }
+
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}

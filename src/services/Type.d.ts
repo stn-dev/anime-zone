@@ -1,3 +1,5 @@
+import type { Anime, CharacterFull } from "@tutkli/jikan-ts";
+
 export interface HeaderLinkType {
   label: string;
   href: string;
@@ -46,4 +48,16 @@ export interface VideoProps {
   src: string;
   className?: string;
   title?: string;
+}
+
+interface PaginationProps {
+  onClick: (é: React.MouseEvent<>) => void;
+}
+
+export interface AnimeWithType extends Anime {
+  filterType: "anime";
+}
+
+export interface CharacterWithType extends CharacterFull {
+  filterType: "character";
 }

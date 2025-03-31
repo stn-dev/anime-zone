@@ -2,122 +2,129 @@ import { useParams } from 'react-router'
 import Container from '../components/Container'
 import { useEffect, useState } from 'react'
 import { JikanClient } from '@tutkli/jikan-ts'
-import type { Anime, AnimeEpisodeVideo } from '@tutkli/jikan-ts'
+import type { Anime } from '@tutkli/jikan-ts'
 import VideoPriview from '../components/VideoPriview'
+import GoBack from '../components/icons/GoBack'
+import RingLoader from 'react-spinners/RingLoader'
 
 function SingleAnime() {
   const [anime, setAnime] = useState<Anime>()
+  const [isLoading, setIsLoading] = useState(false)
   const jikan = new JikanClient()
-  const params = useParams()
-  const id = params.id
+  const { id } = useParams()
   useEffect(() => {
     const getOneAnime = async () => {
-      const res = await jikan.anime.getAnimeById(Number(id))
-      console.log(res.data)
-      setAnime(res.data)
+      try {
+        setIsLoading(true)
+        const res = await jikan.anime.getAnimeById(Number(id))
+        console.log(res.data)
+        setAnime(res.data)
+        setIsLoading(false)
+      } catch (error) {
+        console.log('error : ' + error)
+        setIsLoading(false)
+      }
     }
-
-    // const getEpisodes = async () => {
-    //   const res = await jikan.anime.getAnimeEpisodeVideos(Number(id))
-    //   console.log(res.data)
-
-    //   if (res.pagination?.last_visible_page && res.pagination?.last_visible_page === 1) {
-    //     setEpisodes(res.data)
-    //   } else if (res.pagination?.last_visible_page && res.pagination?.last_visible_page > 1) {
-    //     const episodeArray: AnimeEpisodeVideo[] = []
-    //     for (let i = 1; i <= res.pagination.last_visible_page; i++) {
-
-    //       const response = await jikan.anime.getAnimeEpisodeVideos(Number(id), i)
-    //       episodeArray.push(...response.data)
-    //     }
-    //     console.log(episodeArray)
-    //     setEpisodes(episodeArray)
-
-    //   }
-    // }
     getOneAnime()
-    // getEpisodes()
   }, [])
 
   return (
-    <div className='w-full h-full relative' >
-      <img className='w-full h-full absolute opacity-20 top-0 left-0 z-[5] object-cover' src={anime?.images.jpg.large_image_url} alt="" />
-      <Container tag='section' className='pt-[100px] bg-transparent min-h-screen flex flex-col gap-10 items-center relative z-[6] pb-[50px] '>
-        <div className='w-full max-w-[1000px] flex flex-col gap-5 lg:flex-row items-center justify-between'>
+    <>
+      {
+        isLoading ? (<Container className='h-screen flex items-center justify-center' > <RingLoader color="#fca311" /> </Container>) : (
 
-          <div className='flex flex-col items-start justify-center gap-5'>
-            <div className='text-xl font-semibold flex items-center justify-center gap-5'>
-              <div className='w-fit h-[30px] lg:h-[50px] overflow-hidden flex items-center justify-center' >
+          <div className='w-full h-full relative' >
+
+            <img className='w-full h-full absolute opacity-20 top-0 left-0 z-[5] object-cover' src={anime?.images.jpg.large_image_url} alt="" />
+
+            <Container tag='section' className='pt-[100px] bg-transparent min-h-screen flex flex-col gap-10 items-center relative z-[6] pb-[50px] '>
+
+              <GoBack className='absolute left-[20px] top-[50px] lg:left-[100px] md:top-[100px] z-20 w-4 h-4  md:w-5 md:h-5' />
+
+              <div className='w-full max-w-[1000px] flex flex-col gap-5 lg:flex-row items-center justify-between'>
+
+                <div className='flex flex-col items-start justify-center gap-5'>
+
+                  <div className='text-xl font-semibold flex items-center justify-center gap-5'>
+                    <div className='w-fit h-[30px] lg:h-[50px] overflow-hidden flex items-center justify-center' >
+                      <img
+                        className=' w-[50px] lg:w-[80px]'
+                        src="/src/assets/imdb.png"
+                        alt="dmdb logo"
+                      />
+                    </div>
+                    <span> {anime?.score}</span>
+                  </div>
+
+                  <h1 className=' w-fit text-[40px] font-bold uppercase flex pl-5 items-center justify-center gap-5 overflow-hidden relative' >
+                    <span className=' h-full w-[5px] bg-contrasted absolute top-0 left-0' ></span>
+                    {anime?.title}
+                  </h1>
+
+                  <p className='text-contrasted font-semibold flex items-center justify-center gap-5 text-xl'> Genres:
+                    <span className='text-neutre font-normal flex flex-nowrap items-center justify-start gap-3 truncate' >
+                      {
+                        anime?.genres.map((genre, id) => (
+                          <span className='truncate' key={id} > {genre.name} ,</span>
+                        ))
+                      }
+                    </span>
+                  </p>
+
+                  <p className='text-contrasted font-semibold flex items-center justify-center gap-5 text-xl'> Episodes:
+                    <span className='text-neutre font-normal' >
+                      {anime?.episodes} ,
+                    </span>
+                  </p>
+
+                  <p className='text-contrasted font-semibold flex items-center justify-center gap-5 text-xl'> Studios:
+                    <span className='text-neutre font-normal flex items-center justify-center gap-3' >
+                      {anime?.studios.map((studiio, id) => (
+                        <span key={id} > {studiio.name} ,</span>
+                      ))}
+                    </span>
+                  </p>
+
+                  <p className='text-contrasted font-semibold flex items-center justify-center gap-5 text-xl'> Years:
+                    <span className='text-neutre font-normal' >
+                      {anime?.year ? anime.year : "Not avalaible"}
+                    </span>
+                  </p>
+
+                </div>
+
                 <img
-                  className=' w-[50px] lg:w-[80px]'
-                  src="/src/assets/imdb.png"
-                  alt="dmdb logo"
+                  className='w-full max-w-[500px]  h-auto rounded-tl-3xl rounded-br-3xl'
+                  src={anime?.images.jpg.large_image_url}
+                  alt="anime Image"
                 />
               </div>
-              <span> {anime?.score}</span>
-            </div>
-            <h1 className=' w-fit text-[40px] font-bold uppercase flex pl-5 items-center justify-center gap-5 overflow-hidden relative' >
-              <span className=' h-full w-[5px] bg-contrasted absolute top-0 left-0' ></span>
-              {anime?.title}
-            </h1>
 
-            <p className='text-contrasted font-semibold flex items-center justify-center gap-5 text-xl'> Genres:
-              <span className='text-neutre font-normal flex flex-wrap items-center justify-start gap-3' >
-                {
-                  anime?.genres.map((genre, id) => (
-                    <span key={id} > {genre.name} ,</span>
-                  ))
-                }
-              </span>
-            </p>
-            <p className='text-contrasted font-semibold flex items-center justify-center gap-5 text-xl'> Episodes:
-              <span className='text-neutre font-normal' >
-                {anime?.episodes} ,
-              </span>
-            </p>
-            <p className='text-contrasted font-semibold flex items-center justify-center gap-5 text-xl'> Studios:
-              <span className='text-neutre font-normal flex items-center justify-center gap-3' >
-                {anime?.studios.map((studiio, id) => (
-                  <span key={id} > {studiio.name} ,</span>
-                ))}
-              </span>
-            </p>
-            <p className='text-contrasted font-semibold flex items-center justify-center gap-5 text-xl'> Years:
-              <span className='text-neutre font-normal' >
-                {anime?.year ? anime.year : "Not avalaible"}
-              </span>
-            </p>
+              {/* trailer part */}
+              {
+                anime?.trailer.embed_url && (
+                  <div className='flex flex-col items-center justify-center gap-10' >
+                    <h2 className='text-5xl font-bold capitalize' > trailer </h2>
+
+                    <VideoPriview
+                      src={anime?.trailer.embed_url as string}
+                      title={anime?.title as string}
+                      key={anime?.mal_id}
+                    />
+                  </div>
+                )
+              }
+
+              {/* synopsis part */}
+              <div className='w-full h-fit flex flex-col items-center justify-center gap-10 max-w-[1000px]' >
+                <h2 className='text-5xl font-bold capitalize' > Synopsis </h2>
+                <p className=' text-base lg:text-xl opacity-70' > {anime?.synopsis} </p>
+              </div>
+            </Container>
           </div>
-
-          <img
-            className='w-full max-w-[500px]  h-auto rounded-tl-3xl rounded-br-3xl'
-            src={anime?.images.jpg.large_image_url}
-            alt="anime Image"
-          />
-        </div>
-        {/* trailer part */}
-        {
-          anime?.trailer.embed_url && (
-            <div className='flex flex-col items-center justify-center gap-10' >
-              <h2 className='text-5xl font-bold capitalize' > trailer </h2>
-
-              <VideoPriview
-                src={anime?.trailer.embed_url as string}
-                title={anime?.title as string}
-                key={anime?.mal_id}
-              />
-            </div>
-          )
-        }
-
-        {/* synopsis part */}
-        <div className='w-full h-fit flex flex-col items-center justify-center gap-10 max-w-[1000px]' >
-          <h2 className='text-5xl font-bold capitalize' > Synopsis </h2>
-          <p className=' text-base lg:text-xl opacity-70' > {anime?.synopsis} </p>
-        </div>
-      </Container>
-
-    </div>
+        )
+      }
+    </>
   )
 }
 
