@@ -5,7 +5,7 @@ import AnimeHeader from '../components/AnimeHeader'
 function Anime() {
 
   return (
-    <Container tag='section' className='min-h-screen pt-[100px] pb-[50px]'>
+    <Container tag='section' className='min-h-screen pt-[70px] xl:pt-[100px] pb-[50px]'>
       <AnimeHeader />
       <Outlet />
     </Container >

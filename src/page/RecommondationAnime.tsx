@@ -10,6 +10,7 @@ function RecommendationAnime() {
   const [pageLimit, setPageLimmit] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
   const [slicedPage, setSlicedPage] = (useState(1))
+  const URL = import.meta.env.VITE_BASE_URL
   const itemPerPage = 25
   const lastItem = slicedPage * itemPerPage;
   const firstItem = lastItem - itemPerPage
@@ -35,7 +36,7 @@ function RecommendationAnime() {
     const fetchAnime = async () => {
       try {
         setIloading(true)
-        const request = await fetch(`https://api.jikan.moe/v4/recommendations/anime?page=${currentPage}`)
+        const request = await fetch(`${URL}recommendations/anime?page=${currentPage}`)
         const res: JikanResponse<Recommendation[]> = await request.json()
         const allData: RecommendationEntry[] = []
         res.data.forEach((entries: any) => {

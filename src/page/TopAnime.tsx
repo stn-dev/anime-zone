@@ -9,12 +9,13 @@ function TopAnime() {
   const [loading, setIloading] = useState<boolean>(false)
   const [pageLimit, setPageLimmit] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
+  const URL = import.meta.env.VITE_BASE_URL
 
   useEffect(() => {
     const fetchAnime = async () => {
       try {
         setIloading(true)
-        const request = await fetch(`https://api.jikan.moe/v4/top/anime?page=${currentPage}`)
+        const request = await fetch(`${URL}top/anime?page=${currentPage}`)
         const res: JikanResponse<Anime[]> = await request.json()
         setTopAnime(res.data)
         setPageLimmit(Number(res.pagination?.last_visible_page))

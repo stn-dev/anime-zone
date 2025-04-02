@@ -9,12 +9,13 @@ function AllAnime() {
   const [loading, setIloading] = useState<boolean>(false)
   const [pageLimit, setPageLimmit] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
+  const URL = import.meta.env.VITE_BASE_URL
 
   useEffect(() => {
     const fetchAnime = async () => {
       try {
         setIloading(true)
-        const request = await fetch(`https://api.jikan.moe/v4/anime?page=${currentPage}`)
+        const request = await fetch(`${URL}anime?page=${currentPage}`)
         const res: JikanResponse<Anime[]> = await request.json()
         setTopAnime(res.data)
         setPageLimmit(Number(res.pagination?.last_visible_page))
@@ -35,10 +36,10 @@ function AllAnime() {
         ) : (
           <div className='grid grid-cols-1 gap-5 items-center justify-center md:grid-cols-2 xl:grid-cols-3 min-h-[90vh]' >
             {
-              topAnime?.map((anime) => {
+              topAnime?.map((anime, id) => {
                 return (
                   <CardAnime
-                    key={anime.mal_id}
+                    key={id}
                     id={anime.mal_id}
                     title={anime.title}
                     episode={anime.episodes}
