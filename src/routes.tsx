@@ -6,6 +6,11 @@ import Anime from "./page/Anime";
 import SingleAnime from "./page/SingleAnime";
 import Characters from "./page/Characters";
 import SingleCharacter from "./page/SingleCharacter";
+import AllAnime from "./page/AllAnime";
+import CurrentAnime from "./page/CurrentAnime";
+import TopAnime from "./page/TopAnime";
+import AnimeUpcoming from "./page/AnimeUpcoming";
+import RecommendationAnime from "./page/RecommondationAnime";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +28,28 @@ export const router = createBrowserRouter([
       {
         path: '/anime',
         element: <Anime />,
+        children: [
+          {
+            path: '',
+            element: <AllAnime />
+          },
+          {
+            path: 'current',
+            element: <CurrentAnime />
+          },
+          {
+            path: 'upcoming',
+            element: <AnimeUpcoming />
+          },
+          {
+            path: 'top',
+            element: <TopAnime />
+          },
+          {
+            path: 'recommendation',
+            element: <RecommendationAnime />
+          }
+        ]
       },
       {
         path: '/anime/:id',

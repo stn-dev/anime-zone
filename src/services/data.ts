@@ -42,6 +42,29 @@ export const selectFilterData: SelectProps["options"] = [
   },
 ];
 
+export const animeHeaderData: HeaderLinkType[] = [
+  {
+    label: "All",
+    href: "",
+  },
+  {
+    label: "Top",
+    href: "top",
+  },
+  {
+    label: "Current",
+    href: "current",
+  },
+  {
+    label: "Upcoming",
+    href: "upcoming",
+  },
+  {
+    label: "Recommendation",
+    href: "recommendation",
+  },
+];
+
 export const pokemonData = Array.from({ length: 6 }, () => "pokemon");
 export const dbZnData = Array.from({ length: 5 }, () => "Dragon ball");
 export const narutoData = Array.from({ length: 9 }, () => "Naruto");

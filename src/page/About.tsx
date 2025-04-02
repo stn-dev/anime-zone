@@ -3,13 +3,29 @@ import Container from '../components/Container'
 function About() {
   return (
     <Container tag='section' className='min-h-screen flex flex-col justify-center items-center gap-5'>
-      <h1 className='text-4xl font-bold text-neutre text-center ' > What is this site for? </h1>
-      <p className='text-center ' > Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, reiciendis? Esse, in necessitatibus minus iure ea id explicabo doloremque quae amet a pariatur porro facere dolorum placeat, blanditiis nulla labore. Mollitia corporis corrupti ab animi quaerat nisi, doloribus, perferendis voluptate sequi in cupiditate ea, commodi tenetur molestias reiciendis nemo! Enim architecto itaque fugit numquam quasi doloribus eveniet, mollitia ad suscipit? </p>
-      <h2 className='text-3xl font-semibold text-center text-neutre ' > Why did i create this website ? </h2>
-      <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quisquam minima magnam, perferendis, ut debitis officiis asperiores ratione aliquam vel iusto ipsam, ad dolores. Maiores saepe velit iure esse dolores atque, molestias officiis delectus expedita eius molestiae? Dolore corrupti ullam deserunt sunt aut atque tempora et perferendis provident similique delectus eaque aliquam obcaecati facere ea rerum architecto adipisci error ex omnis voluptatum, quod voluptatibus? Ullam eligendi labore ratione autem doloribus cum illum dicta aliquam itaque, eius tempora! Doloribus incidunt inventore, possimus sit sapiente, aut magni esse est exercitationem impedit laborum nobis omnis numquam deleniti consectetur? Odit similique ad dolor aliquid. </p>
-      <h2 className='text-3xl font-semibold text-center'> How it work ? </h2>
-      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque nesciunt magnam id voluptate magni exercitationem odit nulla rem distinctio, reiciendis repudiandae pariatur qui tempore harum consequatur error praesentium numquam mollitia. </p>
-      <h3 className='text-6xl font-bold text-center text-contrasted' > Hope you will enjoy it! </h3>
+      <div>
+        <h1 className='text-4xl font-bold text-neutre text-center ' > What is the Purpose of This Website? </h1>
+        <p className=' ' > This website is designed for anime fans who want quick and reliable information about their favorite series, characters, and more. Whether you're looking for details about a specific anime, exploring character backgrounds, or discovering new series, this platform provides a straightforward way to access essential anime-related data.
+        </p>
+        <p> Unlike streaming services, this site does not offer anime for viewing. Instead, it serves as an informational hub where you can explore character profiles, plot summaries, genres, and other key details—all in one place.
+        </p>
+        <p> Whether you're a long-time anime enthusiast or just getting started, this site makes it easy to find the information you need without unnecessary clutter. </p>
+      </div>
+
+      <div>
+
+        <h2 className='text-3xl font-semibold text-center text-neutre ' > Why I Created This App </h2>
+        <p> I created this app simply because I love anime. As an anime fan, I often found myself searching for information about different series and characters, but it wasn&apos;t always easy to find everything in one place. That&apos;s why I built this platform—to make it easier for anime enthusiasts like me to quickly access essential details without the hassle of browsing multiple sources. </p>
+        <p> This app is my way of sharing my passion for anime with others. Whether you're looking for character backgrounds, anime summaries, or just exploring new series, I hope this platform helps you find what you need effortlessly. </p>
+      </div>
+
+      <div>
+        <h2 className='text-3xl font-semibold text-center'> How it work ? </h2>
+        <p> Using this app is simple! Just type a name into the search bar, and it will instantly return matching anime and characters. Whether you're looking for a specific series or character, the search feature helps you find relevant information quickly.
+        </p>
+        <p> You can also explore freely by browsing the Anime and Character sections, where you'll find a collection of titles and personalities to discover. No need to search—just scroll and explore! </p>
+      </div>
+      <h3 className='text-6xl font-bold text-center text-contrasted' > Enjoy your journey through the world of anime!</h3>
     </Container>
   )
 }

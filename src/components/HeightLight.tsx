@@ -1,17 +1,11 @@
 import { Link } from 'react-router';
-// import { Swiper, SwiperSlide } from 'swiper/react'
-// import { CardProps } from '../services/Type';
 import Button from './Button';
 import CardAnime from './CardAnime';
-import type { Anime, CharacterFull } from '@tutkli/jikan-ts';
+import type { Anime, CharacterFull, JikanResponse } from '@tutkli/jikan-ts';
 import CardCharacters from './CardCharacters';
 import { useEffect, useState } from 'react';
 import Skeleton from './Skeleton';
-// import { Swiper, SwiperSlide } from 'swiper/react'
-// import { Autoplay, Pagination } from 'swiper/modules'
-// import "swiper/css";
-// import "swiper/css/pagination";
-// import "swiper/css/autoplay";
+
 interface HeightLightProps {
   Categories: 'anime' | 'characters'
   limite?: string;
@@ -26,9 +20,11 @@ function HeightLight({ Categories, limite = '3', title }: HeightLightProps) {
       setIsLoading(true)
       try {
         const request = await fetch(`https://api.jikan.moe/v4/top/${Categories}?limit=${limite}`)
-        const response = await request.json()
+        const reco = await fetch(`https://api.jikan.moe/v4/recommendations/${Categories}?limit=${limite}`)
+        console.log(await reco.json())
+        const response: JikanResponse<Anime[]> = await request.json()
         console.log(response.data)
-        setData(response.data)
+        setData(response.data.length > 3 ? response.data.slice(1, 4) : response.data)
         setIsLoading(false)
       } catch (error) {
         console.log(`error occuring: ${error}`)

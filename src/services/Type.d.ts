@@ -19,6 +19,7 @@ export interface CardCharactersProps {
   name: string;
   japan_name: string;
   imageSrc: string;
+  onLoad?: () => void;
 }
 
 export interface InputPros {

@@ -17,6 +17,8 @@ function SingleAnime() {
       try {
         setIsLoading(true)
         const res = await jikan.anime.getAnimeById(Number(id))
+        const test = await jikan.seasons.getSeasonUpcoming()
+        console.log(test)
         console.log(res.data)
         setAnime(res.data)
         setIsLoading(false)
@@ -44,7 +46,6 @@ function SingleAnime() {
               <div className='w-full max-w-[1000px] flex flex-col gap-5 lg:flex-row items-center justify-between'>
 
                 <div className='flex flex-col items-start justify-center gap-5'>
-
                   <div className='text-xl font-semibold flex items-center justify-center gap-5'>
                     <div className='w-fit h-[30px] lg:h-[50px] overflow-hidden flex items-center justify-center' >
                       <img
@@ -105,7 +106,6 @@ function SingleAnime() {
                 anime?.trailer.embed_url && (
                   <div className='flex flex-col items-center justify-center gap-10' >
                     <h2 className='text-5xl font-bold capitalize' > trailer </h2>
-
                     <VideoPriview
                       src={anime?.trailer.embed_url as string}
                       title={anime?.title as string}

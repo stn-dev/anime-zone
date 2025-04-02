@@ -1,7 +1,7 @@
 import Container from '../components/Container'
 import GlobalSearch from '../components/GlobalSearch'
 import HeightLight from '../components/HeightLight'
-import Input from '../components/Input'
+// import Input from '../components/Input'
 
 function Home() {
   return (
