@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
         element: <Anime />,
         children: [
           {
-            index: true,
+            path: 'all',
             element: <AllAnime />
           },
           {

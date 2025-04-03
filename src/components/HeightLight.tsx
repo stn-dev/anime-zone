@@ -75,7 +75,7 @@ function HeightLight({ Categories, limite = '3', title }: HeightLightProps) {
             )
         }
       </div>
-      <Link to={`/${Categories}`} >
+      <Link to={Categories === 'anime' ? '/anime/all' : 'characters'} >
         <Button label='See more' variant='stroked' />
       </Link>
     </div>

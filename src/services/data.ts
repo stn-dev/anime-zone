@@ -1,4 +1,4 @@
-import { HeaderLinkType, SelectProps } from "./Type";
+import { HeaderLinkType } from "./Type";
 
 export const headerLinkData: HeaderLinkType[] = [
   {
@@ -7,7 +7,7 @@ export const headerLinkData: HeaderLinkType[] = [
   },
   {
     label: "Anime",
-    href: "/anime",
+    href: "/anime/all",
   },
   {
     label: "Characters",
@@ -19,33 +19,10 @@ export const headerLinkData: HeaderLinkType[] = [
   },
 ];
 
-export const selectFilterData: SelectProps["options"] = [
-  {
-    label: "All",
-    value: "all",
-  },
-  {
-    label: "Pokemon",
-    value: "pokemon",
-  },
-  {
-    label: "Dragon Ball",
-    value: "dragon ball",
-  },
-  {
-    label: "One piece",
-    value: "one piece",
-  },
-  {
-    label: "Naruto",
-    value: "naruto",
-  },
-];
-
 export const animeHeaderData: HeaderLinkType[] = [
   {
     label: "All",
-    href: "",
+    href: "all",
   },
   {
     label: "Top",
@@ -64,8 +41,3 @@ export const animeHeaderData: HeaderLinkType[] = [
     href: "recommendation",
   },
 ];
-
-export const pokemonData = Array.from({ length: 6 }, () => "pokemon");
-export const dbZnData = Array.from({ length: 5 }, () => "Dragon ball");
-export const narutoData = Array.from({ length: 9 }, () => "Naruto");
-export const onepieceData = Array.from({ length: 5 }, () => "one piece");

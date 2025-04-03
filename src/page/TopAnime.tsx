@@ -36,10 +36,10 @@ function TopAnime() {
         ) : (
           <div className='grid grid-cols-1 gap-5 items-center justify-center md:grid-cols-2 xl:grid-cols-3 min-h-[90vh]' >
             {
-              topAnime?.map((anime) => {
+              topAnime?.map((anime, id) => {
                 return (
                   <CardAnime
-                    key={anime.mal_id}
+                    key={id}
                     id={anime.mal_id}
                     title={anime.title}
                     episode={anime.episodes}

@@ -11,7 +11,7 @@ function Header() {
     <div className='w-full h-fit fixed flex items-center justify-center z-50 backdrop-blur-sm' >
       <div className='absolute w-full h-full bg-dark opacity-30' ></div>
       <Container tag='header' className='  text-white  flex justify-between items-center text-sm lg:text-base xl:text-lg py-0 md:py-3 xl:py-5 z-10 ' >
-        <NavLink className={"z-10 relative"} to={'/'} ><Logo /></NavLink>
+        <NavLink end={false} className={"z-10 relative"} to={'/'} ><Logo /></NavLink>
         <p onClick={() => setShowMenu(!showMenu)}
           className='lg:hidden hover:cursor-pointer z-10 relative'
         >

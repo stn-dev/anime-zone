@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import CardAnime from '../components/CardAnime'
 import SkeletonGroup from '../components/SkeletonGroup'
 import Button from '../components/Button'
+import { Link } from 'react-router'
 
 function AllAnime() {
   const [topAnime, setTopAnime] = useState<Anime[]>()
@@ -54,18 +55,22 @@ function AllAnime() {
         )
       }
       <div className='flex flex-wrap items-center justify-center gap-5 md:gap-10' >
-        <Button
-          label='Prev'
-          variant='orange'
-          onClick={() => currentPage >= 1 ? setCurrentPage((prev) => prev - 1) : setCurrentPage(1)}
-          disable={currentPage === 1 || loading}
-        />
-        <Button
-          label='Next'
-          variant='orange'
-          onClick={() => currentPage <= pageLimit ? setCurrentPage((prev) => ++prev) : setCurrentPage(pageLimit)}
-          disable={currentPage === pageLimit || loading}
-        />
+        <Link to={'#anime-header'} >
+          <Button
+            label='Prev'
+            variant='orange'
+            onClick={() => currentPage >= 1 ? setCurrentPage((prev) => prev - 1) : setCurrentPage(1)}
+            disable={currentPage === 1 || loading}
+          />
+        </Link>
+        <Link to={'#anime-header'}>
+          <Button
+            label='Next'
+            variant='orange'
+            onClick={() => currentPage <= pageLimit ? setCurrentPage((prev) => ++prev) : setCurrentPage(pageLimit)}
+            disable={currentPage === pageLimit || loading}
+          />
+        </Link>
       </div>
     </div >
   )
