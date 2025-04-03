@@ -7,7 +7,7 @@ export const headerLinkData: HeaderLinkType[] = [
   },
   {
     label: "Anime",
-    href: "/anime/all",
+    href: "/anime",
   },
   {
     label: "Characters",
@@ -22,7 +22,7 @@ export const headerLinkData: HeaderLinkType[] = [
 export const animeHeaderData: HeaderLinkType[] = [
   {
     label: "All",
-    href: "all",
+    href: "",
   },
   {
     label: "Top",

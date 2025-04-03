@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router'
+import { NavLink, useLocation } from 'react-router'
 import Container from './Container'
 import { headerLinkData } from '../services/data'
 import { useState } from 'react'
@@ -6,6 +6,14 @@ import Logo from './icons/Logo'
 
 function Header() {
   const [showMenu, setShowMenu] = useState<boolean>(false)
+  const { pathname } = useLocation()
+  const testActiveLink = (href: string) => {
+    if (pathname.length === 1 && href.toLocaleLowerCase() === "home") {
+      return true;
+    } else if (pathname.includes(href.toLocaleLowerCase())) {
+      return true
+    }
+  }
   return (
 
     <div className='w-full h-fit fixed flex items-center justify-center z-50 backdrop-blur-sm' >
@@ -21,7 +29,7 @@ function Header() {
           {
             headerLinkData.map((link, id) => (
               <li className='transition-none' key={id} onClick={() => setShowMenu(false)} >
-                <NavLink to={link.href} className='hover:text-contrasted  transition-colors'> {link.label} </NavLink>
+                <NavLink to={link.href} className={`hover:text-contrasted  transition-colors ${testActiveLink(link.label) ? 'text-contrasted' : 'text-neutre'} `}> {link.label} </NavLink>
               </li>
             ))
           }

@@ -8,22 +8,24 @@ function AnimeHeader() {
   const [showNav, setShownav] = useState(false)
   const selectRef = useRef<HTMLDivElement | null>(null)
 
+  const checkActiveLink = (link: string) => {
+    if (pathname === '/anime' && link === '') {
+      return true
+    } else if (pathname === `/anime/${link}`) return true
+  }
+
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
         setShownav(false)
       }
     }
-
     document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      window.removeEventListener('mousedown', handleClickOutside)
-    }
+    return () => window.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  console.log(pathname)
   return (
-    <div id="anime-header" className="flex items-center justify-center" >
+    <div id="anime-header" className=" w-full flex items-center justify-center" >
       <div className=" w-fit flex flex-col items-center gap-3 md:hidden" ref={selectRef} >
         <p className="py-3 px-7 bg-blue text-contrasted font-semibold rounded-md hover:cursor-pointer text-nowrap" onClick={() => setShownav(!showNav)} > Filtered by : <span className="text-neutre pl-3" > {filter} </span> </p>
         {
@@ -46,14 +48,14 @@ function AnimeHeader() {
           )
         }
       </div>
-      <div className="grid-cols-1 md:grid-cols-5 text-xs xl:text-lg gap-2 font-semibold hidden md:grid" >
+      <div className="w-full grid-cols-1 md:grid-cols-5 text-xs xl:text-lg gap-2 font-semibold hidden md:grid" >
         {
           animeHeaderData.map((link, id) => (
             <Link
               key={id}
               to={link.href}
               className={`w-full py-4 text-center border border-contrasted `}
-              style={{ backgroundColor: pathname === `/anime/${link.href}` ? '#fca311' : 'transparent', color: pathname === `/anime/${link.href}` ? 'black' : 'white' }}
+              style={{ backgroundColor: checkActiveLink(link.href) ? '#fca311' : 'transparent', color: checkActiveLink(link.href) ? 'black' : 'white' }}
             > {link.label} </Link>
           ))
         }

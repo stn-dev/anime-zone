@@ -15,9 +15,9 @@ body {
   @apply text-neutre;
 }
 
-.active {
+/* .active {
   @apply text-contrasted;
-}
+} */
 
 @keyframes skelton {
   0% {
