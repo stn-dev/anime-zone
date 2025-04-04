@@ -5,7 +5,7 @@ function About() {
     <Container tag='section' className='min-h-screen pt-[80px] xl:pt-[100px] pb-[50px] flex flex-col justify-center items-center gap-10'>
       <div className='flex flex-col items-center justify-center gap-5' >
         <h1 className='text-3xl font-bold text-neutre text-center ' > What is the Purpose of This Website? </h1>
-        <p className=' ' > This website is designed for anime fans who want quick and reliable information about their favorite series, characters, and more. Whether you're looking for details about a specific anime, exploring character backgrounds, or discovering new series, this platform provides a straightforward way to access essential anime-related data.
+        <p> This website is designed for anime fans who want quick and reliable information about their favorite series, characters, and more. Whether you're looking for details about a specific anime, exploring character backgrounds, or discovering new series, this platform provides a straightforward way to access essential anime-related data.
         </p>
         <p> Unlike streaming services, this site does not offer anime for viewing. Instead, it serves as an informational hub where you can explore character profiles, plot summaries, genres, and other key details—all in one place.
         </p>
