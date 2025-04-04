@@ -10,9 +10,10 @@ import { RingLoader } from 'react-spinners';
 function SingleAnime() {
   const [anime, setAnime] = useState<Anime>()
   const [isLoading, setIsLoading] = useState(false)
-  const jikan = new JikanClient()
+
   const { id } = useParams()
   useEffect(() => {
+    const jikan = new JikanClient()
     const getOneAnime = async () => {
       try {
         setIsLoading(true)
@@ -25,7 +26,7 @@ function SingleAnime() {
       }
     }
     getOneAnime()
-  }, [])
+  }, [id])
 
   return (
     <>

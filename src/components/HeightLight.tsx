@@ -14,14 +14,14 @@ interface HeightLightProps {
 function HeightLight({ Categories, limite = '3', title }: HeightLightProps) {
   const [data, setData] = useState<Anime[] | CharacterFull[]>()
   const [isLoading, setIsLoading] = useState(false)
+  const URL = import.meta.env.VITE_BASE_URL
 
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true)
       try {
-        const request = await fetch(`https://api.jikan.moe/v4/top/${Categories}?limit=${limite}`)
+        const request = await fetch(`${URL}top/${Categories}?limit=${limite}`)
         const response: JikanResponse<Anime[]> = await request.json()
-        console.log(response.data)
         setData(response.data)
         setIsLoading(false)
       } catch (error) {
@@ -30,7 +30,7 @@ function HeightLight({ Categories, limite = '3', title }: HeightLightProps) {
       }
     }
     getData()
-  }, [])
+  }, [Categories, URL, limite])
 
   return (
     <div className=' w-full flex flex-col items-center justify-center gap-5 md:gap-8 relative z-[5] ' >

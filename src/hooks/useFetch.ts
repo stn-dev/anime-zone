@@ -17,10 +17,10 @@ export const useFetch = (
   >();
   const [pageLimit, setPageLimit] = useState(1);
   const URL = import.meta.env.VITE_BASE_URL;
-  const controller = new AbortController();
-  const signal = controller.signal;
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
     try {
       const fetchingData = async () => {
         setIsLoading(true);
@@ -38,7 +38,7 @@ export const useFetch = (
     }
 
     return () => controller.abort();
-  }, [depedencie]);
+  }, [URL, depedencie, url]);
 
   return { data, isLoading, error, pageLimit };
 };

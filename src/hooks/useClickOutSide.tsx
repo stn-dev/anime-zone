@@ -9,5 +9,5 @@ export const useClickOutSide = (ref: React.RefObject<HTMLDivElement | null>, fn:
     }
     window.addEventListener('mousedown', handleClickOutside)
     return () => window.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+  }, [ref, fn])
 }

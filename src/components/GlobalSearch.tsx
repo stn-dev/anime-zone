@@ -34,7 +34,7 @@ function GlobalSearch() {
       setTotalRes([...animeData, ...characterData])
     }
     getCorespondingData()
-  }, [debounceSearchTrem, currentPage])
+  }, [debounceSearchTrem, currentPage, URL, searchTerm])
 
   return (
     <div className=' w-[250px] md:w-[350px] xl:w-[400px] relative z-[10] flex flex-col gap-2' >
