@@ -17,9 +17,6 @@ function SingleAnime() {
       try {
         setIsLoading(true)
         const res = await jikan.anime.getAnimeById(Number(id))
-        const test = await jikan.seasons.getSeasonUpcoming()
-        console.log(test)
-        console.log(res.data)
         setAnime(res.data)
         setIsLoading(false)
       } catch (error) {

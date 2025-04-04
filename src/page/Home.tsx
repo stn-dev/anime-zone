@@ -24,11 +24,9 @@ function Home() {
         className='absolute top-[2%] translate-y-[-2%] md:top-[0%] left-[50%] translate-x-[-50%]  opacity-30 w-[100vh] h-auto  '
       />
 
-      {/* heightligth anime*/}
       <HeightLight title={'Top animé'} Categories='anime' limite='3' />
-
-      {/* heightligth charcters*/}
       <HeightLight title={'Top characters'} Categories='characters' limite='3' />
+
     </Container>
   )
 }

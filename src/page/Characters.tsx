@@ -7,31 +7,9 @@ import Button from '../components/Button'
 import { useFetch } from '../hooks/useFetch'
 
 function Characters() {
-  // const [characters, setCharacters] = useState<Character[]>()
-  // const [isLoading, setIsLoading] = useState(false)
-  // const [pageLimit, setPageLimmit] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
-  // const URL = import.meta.env.VITE_BASE_URL
-
   const { data, isLoading, pageLimit } = useFetch(`top/characters?page=${currentPage}`, currentPage)
 
-  // useEffect(() => {
-  //   const gatCharacters = async () => {
-  //     setIsLoading(true)
-  //     try {
-  //       const request = await fetch(`${URL}top/characters?page=${currentPage}`)
-  //       const response: JikanResponse<CharacterFull[]> = await request.json()
-  //       console.log(response.data)
-  //       setCharacters(response.data)
-  //       setPageLimmit(Number(response.pagination?.last_visible_page))
-  //       setIsLoading(false)
-  //     } catch (error) {
-  //       console.log(`error occuring: ${error}`)
-  //       setIsLoading(false)
-  //     }
-  //   }
-  //   gatCharacters()
-  // }, [currentPage])
   return (
     <Container tag='section' className='min-h-screen pt-[100px] pb-[50px] flex flex-col items-center justify-center gap-10'>
       {

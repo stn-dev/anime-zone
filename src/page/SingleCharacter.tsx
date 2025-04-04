@@ -17,7 +17,6 @@ function SingleCharacter() {
       try {
         setIsLoading(true)
         const res = await jikan.characters.getCharacterFullById(Number(id))
-        console.log(res.data)
         setCharacter(res.data)
         setIsLoading(false)
       } catch (error) {
