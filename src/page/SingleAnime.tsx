@@ -107,8 +107,8 @@ function SingleAnime() {
                   <div className='flex flex-col items-center justify-center gap-10' >
                     <h2 className='text-5xl font-bold capitalize' > trailer </h2>
                     <VideoPriview
-                      src={anime?.trailer.embed_url as string}
-                      title={anime?.title as string}
+                      src={anime?.trailer.embed_url}
+                      title={anime?.title}
                       key={anime?.mal_id}
                     />
                   </div>

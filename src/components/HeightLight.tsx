@@ -22,7 +22,7 @@ function HeightLight({ Categories, limite = '3', title }: HeightLightProps) {
         const request = await fetch(`https://api.jikan.moe/v4/top/${Categories}?limit=${limite}`)
         const response: JikanResponse<Anime[]> = await request.json()
         console.log(response.data)
-        setData(response.data.length > 3 ? response.data.slice(1, 4) : response.data)
+        setData(response.data)
         setIsLoading(false)
       } catch (error) {
         console.log(`error occuring: ${error}`)
@@ -73,7 +73,7 @@ function HeightLight({ Categories, limite = '3', title }: HeightLightProps) {
             )
         }
       </div>
-      <Link to={Categories === 'anime' ? '/anime/all' : 'characters'} >
+      <Link to={`/${Categories}`} >
         <Button label='See more' variant='stroked' />
       </Link>
     </div>

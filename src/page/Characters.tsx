@@ -1,41 +1,44 @@
 import Container from '../components/Container'
-import type { Character, CharacterFull, JikanResponse } from '@tutkli/jikan-ts'
-import { useEffect, useState } from 'react'
+import type { CharacterFull } from '@tutkli/jikan-ts'
+import { useState } from 'react'
 import CardCharacters from '../components/CardCharacters'
 import SkeletonGroup from '../components/SkeletonGroup'
 import Button from '../components/Button'
+import { useFetch } from '../hooks/useFetch'
 
 function Characters() {
-  const [characters, setCharacters] = useState<Character[]>()
-  const [isLoading, setIsLoading] = useState(false)
-  const [pageLimit, setPageLimmit] = useState(1)
+  // const [characters, setCharacters] = useState<Character[]>()
+  // const [isLoading, setIsLoading] = useState(false)
+  // const [pageLimit, setPageLimmit] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
-  const URL = import.meta.env.VITE_BASE_URL
+  // const URL = import.meta.env.VITE_BASE_URL
 
-  useEffect(() => {
-    const gatCharacters = async () => {
-      setIsLoading(true)
-      try {
-        const request = await fetch(`${URL}top/characters?page=${currentPage}`)
-        const response: JikanResponse<CharacterFull[]> = await request.json()
-        console.log(response.data)
-        setCharacters(response.data)
-        setPageLimmit(Number(response.pagination?.last_visible_page))
-        setIsLoading(false)
-      } catch (error) {
-        console.log(`error occuring: ${error}`)
-        setIsLoading(false)
-      }
-    }
-    gatCharacters()
-  }, [currentPage])
+  const { data, isLoading, pageLimit } = useFetch(`top/characters?page=${currentPage}`, currentPage)
+
+  // useEffect(() => {
+  //   const gatCharacters = async () => {
+  //     setIsLoading(true)
+  //     try {
+  //       const request = await fetch(`${URL}top/characters?page=${currentPage}`)
+  //       const response: JikanResponse<CharacterFull[]> = await request.json()
+  //       console.log(response.data)
+  //       setCharacters(response.data)
+  //       setPageLimmit(Number(response.pagination?.last_visible_page))
+  //       setIsLoading(false)
+  //     } catch (error) {
+  //       console.log(`error occuring: ${error}`)
+  //       setIsLoading(false)
+  //     }
+  //   }
+  //   gatCharacters()
+  // }, [currentPage])
   return (
     <Container tag='section' className='min-h-screen pt-[100px] pb-[50px] flex flex-col items-center justify-center gap-10'>
       {
         isLoading ? (<SkeletonGroup />) : (
           <div className=' w-full grid grid-cols-1 gap-5 items-center justify-center  md:grid-cols-2 xl:grid-cols-3 min-h-[90vh]' >
             {
-              characters?.map((character) => {
+              (data as CharacterFull[])?.map((character) => {
                 return (
                   <CardCharacters
                     key={character.mal_id}

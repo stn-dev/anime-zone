@@ -1,6 +1,9 @@
 import { Link, useLocation } from "react-router"
 import { animeHeaderData } from "../services/data"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
+import { useClickOutSide } from "../hooks/useClickOutSide"
+import Container from "./Container"
+import { useAppearOnScroll } from "../hooks/useAppearOnScroll"
 
 function AnimeHeader() {
   const { pathname } = useLocation()
@@ -8,24 +11,17 @@ function AnimeHeader() {
   const [showNav, setShownav] = useState(false)
   const selectRef = useRef<HTMLDivElement | null>(null)
 
+  useClickOutSide(selectRef, () => setShownav(false))
+  const toogle = useAppearOnScroll()
+
   const checkActiveLink = (link: string) => {
     if (pathname === '/anime' && link === '') {
       return true
     } else if (pathname === `/anime/${link}`) return true
   }
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
-        setShownav(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => window.removeEventListener('mousedown', handleClickOutside)
-  }, [])
-
   return (
-    <div id="anime-header" className=" w-full flex items-center justify-center" >
+    <Container tag="header" className={`fixed p-2 lg:w-full flex items-center justify-center left-[50%] translate-x-[-50%] top-[50px] md:top-[65px] xl:top-[90px] z-10 backdrop-blur-lg transition-all duration-300 ${!toogle ? 'opacity-0 translate-y-[-100px]' : 'opacity-100 translate-y-0'} `} >
       <div className=" w-fit flex flex-col items-center gap-3 md:hidden" ref={selectRef} >
         <p className="py-3 px-7 bg-blue text-contrasted font-semibold rounded-md hover:cursor-pointer text-nowrap" onClick={() => setShownav(!showNav)} > Filtered by : <span className="text-neutre pl-3" > {filter} </span> </p>
         {
@@ -55,12 +51,12 @@ function AnimeHeader() {
               key={id}
               to={link.href}
               className={`w-full py-4 text-center border border-contrasted `}
-              style={{ backgroundColor: checkActiveLink(link.href) ? '#fca311' : 'transparent', color: checkActiveLink(link.href) ? 'black' : 'white' }}
+              style={{ backgroundColor: checkActiveLink(link.href) ? '#fca311' : '#0a111f', color: checkActiveLink(link.href) ? '#0a111f' : '#e5e5e5' }}
             > {link.label} </Link>
           ))
         }
       </div>
-    </div>
+    </Container>
   )
 }
 
