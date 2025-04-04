@@ -5,7 +5,6 @@ import { JikanClient } from '@tutkli/jikan-ts'
 import type { Anime } from '@tutkli/jikan-ts'
 import VideoPriview from '../components/VideoPriview'
 import GoBack from '../components/icons/GoBack'
-// import RingLoader from 'react-spinners/RingLoader'
 import { RingLoader } from 'react-spinners';
 
 function SingleAnime() {
