@@ -5,7 +5,7 @@ import { JikanClient } from '@tutkli/jikan-ts'
 import type { CharacterFull } from '@tutkli/jikan-ts'
 import CardAnime from '../components/CardAnime'
 import GoBack from '../components/icons/GoBack'
-import RingLoader from 'react-spinners/RingLoader'
+import { RingLoader } from 'react-spinners';
 
 function SingleCharacter() {
   const [character, setCharacter] = useState<CharacterFull>()
