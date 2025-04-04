@@ -1,0 +1,16 @@
+ # Autoriser tous les robots à explorer tout le site
+User-agent: *
+Allow: /
+Allow: /about
+Allow : /anime
+Allow : /anime/*
+Allow : /characters
+Allow : /characters/*
+Allow : /anime/top
+Allow : /anime/upcoming
+Allow : /anime/current
+Allow : /anime/recommendation
+
+
+# Sitemaps
+Sitemap: https://anime-zone.verce.app/sitemap.xml
