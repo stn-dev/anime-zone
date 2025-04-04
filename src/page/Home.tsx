@@ -19,7 +19,7 @@ function Home() {
 
       {/* background image */}
       <img
-        src="/src/assets/home-image.png"
+        src="/public/home-image.png"
         alt="anime-image"
         className='absolute top-[2%] translate-y-[-2%] md:top-[0%] left-[50%] translate-x-[-50%]  opacity-30 w-[100vh] h-auto  '
       />

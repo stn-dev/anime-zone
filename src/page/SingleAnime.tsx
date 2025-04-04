@@ -47,7 +47,7 @@ function SingleAnime() {
                     <div className='w-fit h-[30px] lg:h-[50px] overflow-hidden flex items-center justify-center' >
                       <img
                         className=' w-[50px] lg:w-[80px]'
-                        src="/src/assets/imdb.png"
+                        src="/public/imdb.png"
                         alt="dmdb logo"
                       />
                     </div>
