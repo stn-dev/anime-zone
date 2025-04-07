@@ -1,0 +1,7 @@
+ # Autoriser tous les robots à explorer tout le site
+User-agent: *
+Allow: /
+
+
+# Sitemaps
+Sitemap: https://anime-zone-123.verce.app/sitemap.xml
