@@ -11,6 +11,7 @@ import CurrentAnime from "./page/CurrentAnime";
 import TopAnime from "./page/TopAnime";
 import AnimeUpcoming from "./page/AnimeUpcoming";
 import RecommendationAnime from "./page/RecommondationAnime";
+import NotFound from "./page/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
         path: '/characters/:id',
         element: <SingleCharacter />
       },
+      {
+        path: '*',
+        element: <NotFound />
+      }
     ]
   },
 

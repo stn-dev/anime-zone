@@ -1,4 +1,4 @@
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import Container from '../components/Container'
 import { useEffect, useState } from 'react'
 import { JikanClient } from '@tutkli/jikan-ts'
@@ -10,6 +10,7 @@ import { RingLoader } from 'react-spinners';
 function SingleCharacter() {
   const [character, setCharacter] = useState<CharacterFull>()
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
   const { id } = useParams()
   useEffect(() => {
@@ -21,12 +22,13 @@ function SingleCharacter() {
         setCharacter(res.data)
         setIsLoading(false)
       } catch (error) {
-        console.log(`error is : ${error}`)
+        console.log('error : ' + error)
+        if (String(error).includes('404')) navigate('*')
         setIsLoading(false)
       }
     }
     getOneAnime()
-  }, [id])
+  }, [id, navigate])
 
   return (
     <>
