@@ -1,6 +1,6 @@
 function Skeleton() {
   return (
-    <div className="w-full max-w-[450px] h-full min-h-[400px] max-h-[620px] rounded-xl bg-blue flex flex-col gap-5 p-5 relative overflow-hidden brightness-65" >
+    <div data-testid='skeleton' className="w-full max-w-[450px] h-full min-h-[400px] max-h-[620px] rounded-xl bg-blue flex flex-col gap-5 p-5 relative overflow-hidden brightness-65" >
       <div className="w-full h-[70%] bg-dark rounded-lg" >
       </div>
       <div className="w-full h-[30%] bg-dark rounded-lg flex flex-col p-5 items-start justify-around" >
