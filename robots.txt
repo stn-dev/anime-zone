@@ -1,4 +1,3 @@
- # Autoriser tous les robots à explorer tout le site
 User-agent: *
 Allow: /
 

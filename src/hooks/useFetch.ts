@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export const useFetch = (
   url: string,
-  depedencie: number | string | boolean
+  depedencie?: number | string | boolean
 ) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState("");
