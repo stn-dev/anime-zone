@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 
 export const useAppearOnScroll = () => {
   const [toggle, setToggle] = useState(true)
-  const lastScrollValueRef = useRef(0)
+  const lastScrollValueRef = useRef(window.scrollY)
 
   useEffect(() => {
     const scrollHandler = () => {
