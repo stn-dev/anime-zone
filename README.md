@@ -1,54 +1,84 @@
-# React + TypeScript + Vite
+# 🌸 AnimeZone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**AnimeZone** est une application web responsive développée avec **React**, **TypeScript** et **Tailwind CSS**, utilisant l'API **Jikan** comme source de données. Elle permet aux utilisateurs de découvrir, explorer et rechercher des **animes** et **personnages**, tout en accédant à des recommandations, classements, et fiches détaillées.
 
-Currently, two official plugins are available:
+🔗 **Démo en ligne** : [anime-zone-123.vercel.app](https://anime-zone-123.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🔍 Fonctionnalités
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🏠 Page d’accueil (Home)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Recherche globale d’animes et de personnages
+- Affichage de :
+  - 🔥 Trois animes parmi les **top**
+  - ⭐ Trois personnages populaires
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 👤 Page Characters
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Liste complète des personnages
+- Pagination intégrée
+- Chargement en **Skeleton Loader**
+- Page dynamique pour chaque personnage avec détails approfondis
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 🎬 Page Animes
+
+- Divisée en plusieurs sous-pages :
+  - **All** : Tous les animes
+  - **Top** : Les mieux notés
+  - **Current** : Animes en cours de diffusion
+  - **Upcoming** : Animes à venir
+  - **Recommendations** : Suggestions basées sur l’activité
+- Pagination et **Skeleton Loader**
+- Fiches dynamiques par anime avec :
+  - Détails complets
+  - **Trailer vidéo** si disponible
+
+### ℹ️ Page About
+
+- Page statique expliquant l'utilisation du site
+
+---
+
+## ⚙️ Technologies utilisées
+
+- ⚛️ **React**
+- 🟦 **TypeScript**
+- 🎨 **Tailwind CSS**
+- 🌐 **Jikan API**
+- 🔄 **React Router** pour la navigation
+
+---
+
+## 🧱 Fonctionnalités techniques
+
+- Routing dynamique pour les pages d'anime et de personnage
+- Pagination intégrée sur les listes longues
+- Systèmes de **chargement avec skeleton**
+- **Responsive design** pour une utilisation optimale sur mobile et desktop
+
+---
+
+## 📦 Installation
+
+```bash
+# Clone le repo
+git clone https://github.com/ton-utilisateur/animezone.git
+cd animezone
+
+# Installe les dépendances
+npm install
+
+# Lance le serveur de développement
+npm run dev
+
+🤝 Remerciements
+Jikan API pour les données anime/manga
+
+Les développeurs de React, Tailwind et TypeScript
+
+✨ Auteur
+Développé avec ❤️ par [Mario]
+📫 Contact : [Mon e-mail]([mariosantatra@gmail.com])
 ```
