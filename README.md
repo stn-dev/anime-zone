@@ -73,6 +73,9 @@ npm install
 # Lance le serveur de développement
 npm run dev
 
+
+```
+
 🤝 Remerciements
 Jikan API pour les données anime/manga
 
@@ -81,4 +84,3 @@ Les développeurs de React, Tailwind et TypeScript
 ✨ Auteur
 Développé avec ❤️ par [Mario]
 📫 Contact : [Mon e-mail]([mariosantatra@gmail.com])
-```
