@@ -83,4 +83,4 @@ Les développeurs de React, Tailwind et TypeScript
 
 ✨ Auteur
 Développé avec ❤️ par [Mario]
-📫 Contact : [Mon e-mail]([mariosantatra@gmail.com])
+📫 Contact : [Mon e-mail](mariosantatra@gmail.com)
